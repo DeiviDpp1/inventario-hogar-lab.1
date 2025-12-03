@@ -3,6 +3,7 @@
 
 //Clase Articulo
 #include <string>
+#include <vector>
 
 class Articulo{
 public:
