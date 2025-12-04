@@ -1,28 +1,19 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-//Clase Articulo
-#include <string>
-#include <vector>
-
-class Articulo{
+#include <Qstring>
+class Component{
 public:
 
-// Dejamos los Atributos en publico ya que es encesario modificar informacion sobre los mismos frecuentemente, especificamente la cantidad
-// de articulos disponibles en inventario.
-
-    int id_articulo;
-    std::string name;
-    std::string type;
+    int id_component;
+    QString name;
+    QString type;
     int quantity;
-    std::string location;
-    std::string purchase_date;
+    QString location;
+    QString purchase_date;
 
-    Articulo(){}
-
-    Articulo(int id_articulo, const std::string& name, const std::string& type, int quantity, const std::string& location, const std::string& purchase_date)
-        : id_articulo(id), name(name), type(type), quantity(quantity), location(location), purchase_date(purchase_date)
-
-// Los string al ser limitantes no cambiantes se les añade & para evitar esstos cambios de memoria innecesarios
-
+    Component(){}
+    Component(int id_articulo, const QString& name, const QString type, int quantity, const QString location, const QString& purchase_date);
 };
+
+#endif // COMPONENT_H
