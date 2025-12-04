@@ -1,28 +1,29 @@
 #ifndef INVENTORYMANAGER_H
 #define INVENTORYMANAGER_H
 
+#include <QVector>
 #include "Component.h"
-#include <Qvector>
-#include <QString>
-#include "DataBaseManager.h"
+#include "DatabaseManager.h"
 
 class InventoryManager {
-
 public:
-    explicit InventoryManager(DatabaseManager& dbManager);
+    explicit InventoryManager(DatabaseManager* db);
 
-    bool addComponenet(int id_component, const QString& name, const QString type, int quantity, int MinQuantity, int MaxQuantity, const QString location, const QString& purchase_date);
-    bool removeComponent_byId(int id_component);
-    bool removeComponent_byName(const QString& name);
+    // --- Operaciones básicas ---
+    bool addComponent(const Component& comp);
+    bool removeComponent(int id);
+    bool updateComponent(const Component& comp);
 
-    bool updateQuantity_byId(int id_component, int quantity);
-    bool updateQuantity_byName(const QString& name, int quantity);
+    // --- Manejo de inventario ---
+    bool increaseQuantity(int id, int amount);
+    bool decreaseQuantity(int id, int amount);
+    bool setQuantity(int id, int newQuantity);
 
+    QVector<Component> getAll();
+    Component getById(int id);
 
 private:
-    DatabaseManager& dbmanager;
-
-
+    DatabaseManager* db;  // dependencia
 };
 
 #endif // INVENTORYMANAGER_H
